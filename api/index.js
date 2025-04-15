@@ -26,7 +26,7 @@ app.use('/api/post', postRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok' });
+  res.status(200).json({ status: 'ok', dbstring : `${MONGODB_URI}` });
 });
 
 app.get('/reset-seed', async (req,res)=> {

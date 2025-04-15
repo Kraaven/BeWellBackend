@@ -3,11 +3,11 @@ import cors from 'cors';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { diseaseRoutes } from '../routes/diseaseRoute.js';
-import { postRoutes } from '../routes/postRoute.js';
-import { seedInitialData } from '../utils/seed.js';
-import Disease from '../models/Disease';
-import Post from '../models/Post.js';
+import { diseaseRoutes } from '../src/routes/diseaseRoute.js';
+import { postRoutes } from '../src/routes/postRoute.js';
+import { seedInitialData } from '../src/utils/seed.js';
+import Disease from '../src/models/Disease.js';
+import Post from '../src/models/Post.js';
 
 dotenv.config();
 

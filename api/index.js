@@ -34,6 +34,8 @@ app.get('/reset-seed', async (req,res)=> {
   await Post.deleteMany();
 
   await seedInitialData()
+
+  res.status(200).json({status : 'reset'});
 })
 
 app.listen(PORT, () => {

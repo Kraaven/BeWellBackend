@@ -92,7 +92,7 @@ export const seedDiseases = async () => {
         last_updated: new Date(),
       },
       {
-        name: 'Bipolar Disorder',
+        name: 'Bipolar_Disorder',
         overview: {
           description: 'Bipolar disorder is characterized by alternating periods of elevated mood (mania or hypomania) and depression.',
           causes: ['Genetic factors', 'Neurochemical imbalances', 'Environmental triggers', 'Altered brain structure'],
@@ -132,7 +132,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Post-Traumatic Stress Disorder (PTSD)',
+        name: 'Post-Traumatic_)Stress_Disorder_(PTSD)',
         overview: {
           description: 'PTSD is a condition triggered by experiencing or witnessing traumatic events, causing lasting psychological distress.',
           causes: ['Exposure to traumatic events', 'History of other mental health issues', 'Neurobiological factors'],
@@ -212,7 +212,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Obsessive-Compulsive Disorder (OCD)',
+        name: 'Obsessive-Compulsive_Disorder_(OCD)',
         overview: {
           description: 'OCD is characterized by unreasonable thoughts and fears (obsessions) that lead to repetitive behaviors (compulsions).',
           causes: ['Genetic factors', 'Brain structure and functioning', 'Environmental factors', 'Serotonin imbalance'],
@@ -252,7 +252,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Attention-Deficit/Hyperactivity Disorder (ADHD)',
+        name: 'Attention-Deficit/Hyperactivity_Disorder_(ADHD)',
         overview: {
           description: 'ADHD is a neurodevelopmental disorder characterized by persistent patterns of inattention and/or hyperactivity-impulsivity.',
           causes: ['Genetic factors', 'Brain structure differences', 'Neurotransmitter imbalances', 'Environmental factors'],
@@ -292,7 +292,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Eating Disorders',
+        name: 'Eating_Disorder',
         overview: {
           description: 'Eating disorders are characterized by severe disturbances in eating behaviors and related thoughts and emotions.',
           causes: ['Biological factors', 'Psychological factors', 'Social and cultural influences'],
@@ -332,7 +332,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Substance Use Disorders',
+        name: 'Substance_Use_Disorders',
         overview: {
           description: 'Substance use disorders involve the continued use of substances despite significant substance-related problems.',
           causes: ['Genetic vulnerability', 'Environmental factors', 'Brain chemistry changes', 'Mental health issues'],
@@ -372,7 +372,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Autism Spectrum Disorder (ASD)',
+        name: 'Autism_Spectrum_Disorder_(ASD)',
         overview: {
           description: 'Autism spectrum disorder is a neurodevelopmental condition characterized by challenges in social interaction, communication, and restricted or repetitive behaviors.',
           causes: ['Genetic factors', 'Environmental influences', 'Neurological differences', 'Prenatal factors'],
@@ -412,7 +412,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Insomnia Disorder',
+        name: 'Insomnia_Disorder',
         overview: {
           description: 'Insomnia disorder is characterized by persistent difficulty falling or staying asleep despite adequate opportunity, causing distress or impairment.',
           causes: ['Stress', 'Medical conditions', 'Medications', 'Psychiatric disorders', 'Poor sleep habits'],
@@ -452,7 +452,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Borderline Personality Disorder (BPD)',
+        name: 'Borderline_Personality_Disorder_(BPD)',
         overview: {
           description: 'BPD is characterized by a pervasive pattern of instability in interpersonal relationships, self-image, and emotions, with marked impulsivity.',
           causes: ['Genetic factors', 'Brain abnormalities', 'Environmental factors', 'Childhood trauma'],
@@ -492,7 +492,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Panic Disorder',
+        name: 'Panic_Disorder',
         overview: {
           description: 'Panic disorder is characterized by recurrent unexpected panic attacks and persistent concern about future attacks or their consequences.',
           causes: ['Genetic factors', 'Neurobiological factors', 'Stress', 'Psychological factors'],
@@ -542,146 +542,6 @@ export const seedDiseases = async () => {
   }
 };
 
-export const seedPosts = async () => {
-  try {
-    //Dont Seed Posts
-    return;
-    const count = await Post.countDocuments();
-    if (count > 0) {
-      console.log('Database already seeded with posts');
-      return;
-    }
-
-    const posts = [];
-
-    // Depression posts (2 posts)
-    for (let i = 1; i <= 2; i++) {
-      const postId = uuidv4();
-      const commentId = uuidv4();
-      const replyIds = [uuidv4(), uuidv4()];
-
-      posts.push(new Post({
-        PostID: postId,
-        PostType: 'Post',
-        PostTitle: `Depression Post ${i}`,
-        PostBody: `This is a detailed post about dealing with Depression number ${i}.`,
-        PostTopic: 'Depression',
-        PostChildrenIds: [commentId],
-        Likes: 0,
-        Dislikes: 0
-      }));
-
-      posts.push(new Post({
-        PostID: commentId,
-        PostType: 'Comment',
-        PostBody: `Thanks for sharing your Depression story ${i}!`,
-        ParentID: postId,
-        PostChildrenIds: replyIds,
-        Likes: 0,
-        Dislikes: 0
-      }));
-
-      replyIds.forEach((replyId, idx) => {
-        posts.push(new Post({
-          PostID: replyId,
-          PostType: 'Reply',
-          PostBody: `Reply ${idx + 1} to the Depression comment ${i}.`,
-          ParentID: commentId,
-          PostChildrenIds: [],
-          Likes: 0,
-          Dislikes: 0
-        }));
-      });
-    }
-
-    // Anxiety post with 3 comments, one with 3 replies
-    const anxietyPostId = uuidv4();
-    const anxietyCommentIds = [uuidv4(), uuidv4(), uuidv4()];
-    const anxietyReplyIds = [uuidv4(), uuidv4(), uuidv4()];
-
-    posts.push(new Post({
-      PostID: anxietyPostId,
-      PostType: 'Post',
-      PostTitle: 'Anxiety Insights',
-      PostBody: 'Sharing my thoughts and journey through anxiety.',
-      PostTopic: 'Anxiety',
-      PostChildrenIds: anxietyCommentIds,
-      Likes: 0,
-      Dislikes: 0
-    }));
-
-    anxietyCommentIds.forEach((cid, index) => {
-      posts.push(new Post({
-        PostID: cid,
-        PostType: 'Comment',
-        PostBody: `Comment ${index + 1} on anxiety post`,
-        ParentID: anxietyPostId,
-        PostChildrenIds: index === 1 ? anxietyReplyIds : [],
-        Likes: 0,
-        Dislikes: 0
-      }));
-
-      if (index === 1) {
-        anxietyReplyIds.forEach((rid, ridx) => {
-          posts.push(new Post({
-            PostID: rid,
-            PostType: 'Reply',
-            PostBody: `Reply ${ridx + 1} to anxiety comment 2`,
-            ParentID: cid,
-            PostChildrenIds: [],
-            Likes: 0,
-            Dislikes: 0
-          }));
-        });
-      }
-    });
-
-    // ADHD post with 3 comments, 1 reply on last comment
-    const adhdPostId = uuidv4();
-    const adhdCommentIds = [uuidv4(), uuidv4(), uuidv4()];
-    const adhdReplyId = uuidv4();
-
-    posts.push(new Post({
-      PostID: adhdPostId,
-      PostType: 'Post',
-      PostTitle: 'ADHD Strategies',
-      PostBody: 'How I manage my day with ADHD.',
-      PostTopic: 'ADHD',
-      PostChildrenIds: adhdCommentIds,
-      Likes: 0,
-      Dislikes: 0
-    }));
-
-    adhdCommentIds.forEach((cid, index) => {
-      posts.push(new Post({
-        PostID: cid,
-        PostType: 'Comment',
-        PostBody: `ADHD comment ${index + 1}`,
-        ParentID: adhdPostId,
-        PostChildrenIds: index === 2 ? [adhdReplyId] : [],
-        Likes: 0,
-        Dislikes: 0
-      }));
-    });
-
-    posts.push(new Post({
-      PostID: adhdReplyId,
-      PostType: 'Reply',
-      PostBody: 'This reply helped me a lot, thanks!',
-      ParentID: adhdCommentIds[2],
-      PostChildrenIds: [],
-      Likes: 0,
-      Dislikes: 0
-    }));
-
-    await Post.insertMany(posts);
-    console.log('Database seeded with expanded post data');
-  } catch (error) {
-    console.error('Error seeding posts:', error);
-  }
-};
-
 export const seedInitialData = async () => {
   await seedDiseases();
-  await seedPosts();
 };

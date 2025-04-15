@@ -132,7 +132,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Post-Traumatic Stress Disorder (PTSD)',
+        name: 'Post-Traumatic Stress Disorder',
         overview: {
           description: 'PTSD is a condition triggered by experiencing or witnessing traumatic events, causing lasting psychological distress.',
           causes: ['Exposure to traumatic events', 'History of other mental health issues', 'Neurobiological factors'],
@@ -212,7 +212,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Obsessive-Compulsive Disorder (OCD)',
+        name: 'Obsessive-Compulsive Disorder',
         overview: {
           description: 'OCD is characterized by unreasonable thoughts and fears (obsessions) that lead to repetitive behaviors (compulsions).',
           causes: ['Genetic factors', 'Brain structure and functioning', 'Environmental factors', 'Serotonin imbalance'],
@@ -252,7 +252,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Attention-Deficit/Hyperactivity Disorder (ADHD)',
+        name: 'Attention-Deficit Hyperactivity Disorder',
         overview: {
           description: 'ADHD is a neurodevelopmental disorder characterized by persistent patterns of inattention and/or hyperactivity-impulsivity.',
           causes: ['Genetic factors', 'Brain structure differences', 'Neurotransmitter imbalances', 'Environmental factors'],
@@ -372,7 +372,7 @@ export const seedDiseases = async () => {
         last_updated: new Date()
       },
       {
-        name: 'Autism Spectrum Disorder (ASD)',
+        name: 'Autism Spectrum Disorder',
         overview: {
           description: 'Autism spectrum disorder is a neurodevelopmental condition characterized by challenges in social interaction, communication, and restricted or repetitive behaviors.',
           causes: ['Genetic factors', 'Environmental influences', 'Neurological differences', 'Prenatal factors'],

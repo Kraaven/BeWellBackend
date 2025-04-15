@@ -3,9 +3,11 @@ import cors from 'cors';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { diseaseRoutes } from './src/routes/diseaseRoute.js';
-import { postRoutes } from './src/routes/postRoute.js';
-import { seedInitialData } from './src/utils/seed.js';
+import { diseaseRoutes } from '../routes/diseaseRoute.js';
+import { postRoutes } from '../routes/postRoute.js';
+import { seedInitialData } from '../utils/seed.js';
+import Disease from '../models/Disease';
+import Post from '../models/Post.js';
 
 dotenv.config();
 
@@ -27,6 +29,11 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
+app.get('/reset-seed', (req,res)=> {
+  Disease.deleteMany();
+  Post.deleteMany();
+})
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
@@ -35,12 +42,7 @@ app.listen(PORT, () => {
 mongoose.connect(MONGODB_URI)
   .then(async () => {
     console.log('Connected to MongoDB');
-    
-    // Seed initial data
     await seedInitialData();
-    
-    // Start the server only after successful database connection
-    
   })
   .catch((error) => {
     console.error('MongoDB connection error:', error);

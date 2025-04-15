@@ -29,9 +29,11 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
-app.get('/reset-seed', (req,res)=> {
-  Disease.deleteMany();
-  Post.deleteMany();
+app.get('/reset-seed', async (req,res)=> {
+  await Disease.deleteMany();
+  await Post.deleteMany();
+
+  await seedInitialData()
 })
 
 app.listen(PORT, () => {

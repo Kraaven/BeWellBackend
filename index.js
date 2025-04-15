@@ -27,6 +27,10 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI)
   .then(async () => {
@@ -36,9 +40,7 @@ mongoose.connect(MONGODB_URI)
     await seedInitialData();
     
     // Start the server only after successful database connection
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
+    
   })
   .catch((error) => {
     console.error('MongoDB connection error:', error);
